@@ -4,10 +4,11 @@ on:
   push:
     branches: [ "**" ]
   pull_request:
+  workflow_dispatch: # 添加workflow_dispatch事件
 
 jobs:
   build:
-    # Only run on PRs if the source branch is on someone else's repo
+    # 只有在PR的源分支在其他人的存储库中时才运行
     if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
     runs-on: ubuntu-latest
     steps:
